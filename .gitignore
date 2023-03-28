@@ -1,0 +1,25 @@
+# Compiled Python files
+__pycache__/
+*.pyc
+
+# Django related files
+*.log
+*.pot
+*.pyc
+*.swp
+*.swo
+*.sqlite3
+*/migrations/
+local_settings.py
+
+# Ignore environment files
+.env
+
+# Ignore editor files
+.vscode/
+.idea/
+*.sublime*
+
+# Ignore package installation files
+/.venv/
+/pip-selfcheck.json

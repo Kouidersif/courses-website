@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+
+{% block content %}
+<style>
+    label{
+        font-weight: 700;
+    }
+</style>
+<main>
+    <section class="py-5 text-center container" style="background-image: url('https://static.vecteezy.com/system/resources/previews/004/968/002/original/cute-abstract-modern-background-free-vector.jpg');">
+    <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">You are about to delete your Course! Are you sure?</h1>
+        <p>Course name : {{course_to_delete.course_name}}</p>
+        <form method="post" class="w-100">
+            {% csrf_token %}
+            {{form}}
+        <div class="butn d-flex justify-content-center w-100">
+            <button type="submit" class="btn btn-danger btn-lg text-center"> Submit</button>
+        </div>
+        </div>
+    </div>
+    </section>
+
+
+
+</main>
+
+
+{% endblock content %}

@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+
+{% block content %}
+<style>
+    label{
+        font-weight: 700;
+    }
+</style>
+<main>
+    <section class="py-5 text-center container" style="background-image: url('https://static.vecteezy.com/system/resources/previews/004/968/002/original/cute-abstract-modern-background-free-vector.jpg');">
+    <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Keep Your courses up to date</h1>
+        <p class="lead text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta blanditiis quod laboriosam nisi sit aspernatur nobis harum maiores excepturi consequuntur.</p>
+        </div>
+    </div>
+    </section>
+
+    <div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            {% if form.errors %}
+            <div class="alert alert-danger" role="alert">
+                <ul>
+                {% for field_errors in form.errors.values %}
+                {% for error in field_errors %}
+                <li>{{ error }}</li>
+                
+                {% endfor %}
+            {% endfor %}
+            {% endif %}
+        <form method="post" enctype="multipart/form-data" class="w-100">
+            {% csrf_token %}
+            {{form}}
+        <div class="butn d-flex justify-content-center w-100">
+            <button type="submit" class="btn btn-primary btn-lg text-center"> Submit</button>
+        </div>
+        </form>
+        </div>
+    </div>
+    </div>
+
+</main>
+
+
+{% endblock content %}

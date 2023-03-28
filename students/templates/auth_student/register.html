@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block additionalcss %}<link href="{% static 'css/sign-up.css' %}" rel="stylesheet">{% endblock additionalcss %}
+{% block title %}Registration Page{% endblock title %}
+
+{% block content %}
+    
+<main class="form-signin w-100 m-auto">
+    <form method="post">
+        {% csrf_token %}
+    <div class="imgbox w-100 d-flex justify-content-center">
+        <img class="mb-4" src="https://img.freepik.com/free-vector/learning-concept-illustration_114360-6186.jpg" alt="" width="200" height="200">
+    </div>  
+    <h1 class="h3 mb-3 fw-normal">Please sign up</h1>
+    {% if form.errors %}
+    <div class="alert alert-danger" role="alert">
+        <ul>
+        {% for field_errors in form.errors.values %}
+        {% for error in field_errors %}
+        <li>{{ error }}</li>
+        
+        {% endfor %}
+    {% endfor %}
+    {% endif %}
+    </ul>
+    </div>
+    <div class="form-floating mb-3">
+        {{form.full_name}}
+        <label for="floatingInput">Full Name</label>
+    </div>
+    <div class="form-floating mb-3">
+        {{form.email}}
+        <label for="floatingInput">Email</label>
+    </div>
+    <div class="form-floating mb-3">
+        {{form.password1}}
+        <label for="floatingPassword">Password</label>
+    </div>
+    <div class="form-floating mb-3">
+        {{form.password2}}
+        <label for="floatingPassword">Confirm Password</label>
+    </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Register</button>
+    <p class="text-center p-2 text-muted">You have an account? <b><a href="{% url 'log_in' %}" class="text-decoration-none">Login</a></b></p>
+    <p class="mt-5 mb-3 text-center">&copy;2023</p>
+    </form>
+</main>
+
+{% endblock content %}

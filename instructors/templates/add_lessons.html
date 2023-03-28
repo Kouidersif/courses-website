@@ -1,0 +1,20 @@
+<form method="POST">
+    {% csrf_token %}
+    {% for user_lesson in instructor_lessons %}
+    {% if user_lesson.id in user_lesson_ids %}
+    <div>
+        <label>
+        <input type="checkbox" name="lessons" value="{{user_lesson.id}}" checked>
+        {{ user_lesson.lesson_title }}</label>
+    </div>
+    {% else %}
+    <div>
+        <label>
+        <input type="checkbox" name="lessons" value="{{user_lesson.id}}">
+        {{ user_lesson.lesson_title }}</label>
+    </div>
+    {% endif %}
+    {% endfor %}
+    <button type="submit">Add lessons</button>
+</form>
+

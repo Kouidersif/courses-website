@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+
+{% block content %}
+<style>
+    label{
+        font-weight: 700;
+    }
+</style>
+<main>
+    <section class="py-5 text-center container" style="background-image: url('https://static.vecteezy.com/system/resources/previews/004/968/002/original/cute-abstract-modern-background-free-vector.jpg');">
+    <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+            {% if request.user.full_name %}
+        <h1 class="fw-light">WELCOME, {{request.user.full_name}}</h1>
+        {% endif %}
+        <p class="lead text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta blanditiis quod laboriosam nisi sit aspernatur nobis harum maiores excepturi consequuntur.</p>
+            {% if data.studentprofile.user == request.user or data.instructorprofile.user == request.user %}
+        <a href="{% url 'update_user' request.user.id %}" style="font-size: 20px; text-decoration: none;">Edit User Settings</a>
+        {% endif %}
+        </div>
+    </div>
+    </section>
+
+    <div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            <ul class="list-group list-group-flush w-100">
+                <li class="list-group-item p-4" style="font-size: 25px;">Full Name : <b>{{data.full_name}}</b></li>
+                <li class="list-group-item p-4" style="font-size: 25px;">Email : <b>Hidden</b></li>
+                
+            </ul>
+        </div>
+        {% if data.is_student %}
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 mt-2">
+            <div style="display: flex; align-items: center; width: 100%;" class="p-2">
+                <div class="card-header">
+                    <h3>Enrolled Courses</h3>
+                </div>
+            </div>
+            <ul class="list-group list-group-flush w-100">
+                {% for course in data.studentprofile.courses_enrolled.all %}
+                <li class="list-group-item p-2 text-muted" style="font-size: 25px;"><b><a href="{% url 'one_course' course.id %}" class="text-decoration-none">{{course.course_name}}</a></b></li>
+                {% endfor %}
+                
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+    </div>
+
+</main>
+
+
+{% endblock content %}

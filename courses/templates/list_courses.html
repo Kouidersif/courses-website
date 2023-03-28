@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block content %}
+<main>
+
+    <section class="py-5 text-center container">
+    <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Browse all free Courses</h1>
+        <p class="lead text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta blanditiis quod laboriosam nisi sit aspernatur nobis harum maiores excepturi consequuntur.</p>
+        </div>
+    </div>
+    </section>
+
+    <div class="album py-5 bg-light">
+    <div class="container">
+
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            
+            {% for course in object_list %}
+        <div class="col">
+            <div class="card shadow-sm">
+                {% if course.thumbnail %}
+                <img src="{{course.thumbnail.url}}" alt="" class="bd-placeholder-img card-img-top" width="100%" height="225">
+                {% else %}
+                <img src="https://blog.hubspot.com/hubfs/best-online-courses.jpg" alt="" class="bd-placeholder-img card-img-top" width="100%" height="225">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title"><a href="{% url 'one_course' course.id %}" class="text-decoration-none">{{course.course_name|truncatechars:30}}</a></h5>
+                <p class="card-text">{{course.description|truncatechars:150}}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                    <a href="{% url 'one_course' course.id %}" class="btn btn-md btn-primary">View</a>
+                </div>
+                <small class="text-muted">Tutor : {{course.instructor.user.full_name}}</small>
+                <small class="text-muted">{{course.time_posted|timesince}} ago</small>
+                </div>
+            </div>
+            </div>
+        </div>
+        {% endfor %}
+        </div>
+    </div>
+    </div>
+
+</main>
+
+
+{% endblock content %}

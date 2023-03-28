@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static '/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    {% block additionalcss %}{% endblock additionalcss %}
+    
+    <title>{% block title %}{% endblock title %}</title>
+</head>
+<body>
+    {% if request.path != "/instructors/" and request.path != "/auth/login/" and request.path != "/students/" %}
+    {% include "nav.html" %}
+    {% endif %}
+
+    <!-- Pass the messages functionality to the entire project  -->
+    {% for message in messages %}
+    <div class="alert alert-{{message.tags}} w-100 text-center rounded-0" role="alert">
+        {{message}}
+    </div>
+    {% endfor %}
+    <!-- End Messages -->
+
+    <!-- Block Content -->
+    {% block content %}
+    {% endblock content %}
+    <!-- End Block -->
+
+    <!--Javascript-->
+    {% block js %}
+    {% endblock js %}
+
+    <!-- End Javascript-->
+
+
+</body>
+</html>
